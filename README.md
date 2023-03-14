@@ -1,3 +1,4 @@
 # JANPANESE_DEV
-GW毕设
-纯属娱乐，喜欢的小伙伴可以一起开发
+BS项目，使用vue3+springboot搭建，
+具体功能没开发
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.janpaneseDev.mapper.userMapper">
+
+    <resultMap id="SelectUserResultMap" type="com.example.janpaneseDev.entity.userEntity">
+        <result column="user_nm" jdbcType="VARCHAR" property="userName" />
+        <result column="user_pas" jdbcType="VARCHAR" property="userPass" />
+    </resultMap>
+
+    <select id="selectUser" resultMap="SelectUserResultMap">
+        select
+        A.user_nm,
+        A.user_pas
+        from
+        USER A
+        where
+        A.USER_DEL = '0'
+        AND A.USER_NM = #{userName}
+        AND A.USER_PAS =  #{userPass}
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true">
+        INSERT INTO USER(
+            user_nm,
+            user_pas,
+            user_log,
+            user_del,
+            user_creatTime,
+            user_tel,
+            user_mail
+        )  VALUES (
+                                 #{userName},
+                                 #{userPass},
+                                 NULL,
+                                 '0',
+                                 NULL,
+                                 #{userTel},
+                                 #{userEmail}
+                                )
+    </insert>
+
+    <select id="allSelect" resultType="int">
+        SELECT COUNT(0) FROM USER
+    </select>
+
+    <resultMap id="SelectUserListResultMap" type="com.example.janpaneseDev.entity.userEntity">
+        <result column="user_nm" jdbcType="VARCHAR" property="userName" />
+    </resultMap>
+
+    <select id="allNameSelect" resultMap="SelectUserListResultMap">
+        SELECT A.user_nm FROM USER A
+    </select>
+</mapper>
